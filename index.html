@@ -32,6 +32,8 @@
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -40,6 +42,14 @@
         :root {
             --primary-color: #DF1783;
         }
+        
+          .font-caveat {
+    font-family: 'Caveat', cursive;
+  }
+        
+        
+        
+        
         .sidebar-transition { transition: transform 0.3s ease-in-out; }
         .progress-bar-inner { transition: width 0.5s ease-in-out; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -162,6 +172,43 @@
         }  
         
         
+        .tooltip {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.group:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+        
+    
+  
+  
+  .timeline-marker {
+    position: absolute;
+    top: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: #DF1783;
+    border: 4px solid #f8fafc;
+    box-sizing: content-box;
+    z-index: 10;
+  }
+  
+  .timeline-line {
+  left: 0px; /* Adjust based on your marker size */
+  right: 150px; /* Adjust based on your marker size */
+}
+  
+  
+  html.dark .timeline-marker {
+    background: #db2777;
+    border: 4px solid #1f2937;
+  }
 
     </style>
     
@@ -299,6 +346,151 @@ document.addEventListener("DOMContentLoaded", function () {
                         </p>
 </div>
     
+ 
+    
+<section class="w-full bg-transparent py-12 px-6">
+  <div class="overflow-x-auto">
+    <div class="relative flex items-start justify-start space-x-12 min-w-[1700px] pb-12">
+
+<!-- Horizontal Connector Line - Now properly constrained -->
+      <div class="absolute top-[2.25rem] h-[2px] bg-gray-300 dark:bg-gray-700 z-0" 
+           style="left: 70px; right: 50px;"></div>
+           
+           
+           
+<!-- Arrow Head -->
+      <div class="absolute top-[2.25rem] right-[50px] w-0 h-0 border-t-[6px] border-t-transparent
+                  border-l-[10px] border-l-gray-300 dark:border-l-gray-700 border-b-[6px] border-b-transparent
+                  transform translate-y-[-50%] z-0"></div>
+           
+           
+
+      <!-- PHASE BLOCKS -->
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 1</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Workspace<br>Foundation
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~30 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 2</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Essential<br>Accounts Setup
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~20 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 3</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Browser<br>Customization
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~15 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 4</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Folder<br>Organization
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~25 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 5</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Chrome<br>Extensions
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~15 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 6</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Desktop<br>Apps
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~20 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 7</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            AI &<br>Automation
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~40 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 8</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            File<br>Management
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~20 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 9</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Daily<br>Workflow
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~30 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 10</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Maintenance
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~10 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item flex flex-col items-center relative z-10 min-w-[100px]">
+        <div class="text-lg font-caveat text-pink-600 dark:text-pink-400 mb-1">Phase 11</div>
+        <span class="timeline-marker"></span>
+        <div class="mt-6 text-center">
+          <div class="text-gray-800 dark:text-white text-sm font-medium leading-snug">
+            Final<br>Checklist
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-xs">~10 min</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+    
     
     
     
@@ -325,9 +517,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 items: [
                     { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', },
      
-                    { text: 'Download Google Chrome Browser', subtext: 'Visit: https://www.google.com/chrome/ on your browser and download the desktop application.', link: 'https://www.google.com/chrome/',  screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/e2edf57b6a00d5d317d961ad2418fad00309559a.png' },
-                    { text: 'Download Google Drive', subtext: 'On Windows: Settings', screenshotUrl: ' https://bucket.mlcdn.com/a/3336/3336910/images/10c6d29ba870e5c22eb25f2c386f8d2f85f7805b.png', link: 'https://workspace.google.com/products/drive/#download/' },
-                    { text: 'Download Ferdium or Monobox Desktop App', link: 'https://ferdium.org/download',  subtext: 'On Windows: Settings', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/3ec9a66b8cec6a6bae95ebd170cbea88c0468180.png', tooltip: 'Keep all your favorite websites & online tools organized right from your desktop.' }
+                    { text: 'Download Google Chrome Browser', subtext: 'Visit: https://www.google.com/chrome/ on your browser and download the desktop application.', link: 'https://www.google.com/chrome/',  screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/d054f6ca0c4c83c55037bea732f4edecd64e2e10.png' },
+                    { text: 'Download Google Drive', subtext: 'Google Drive is your FREE central cloud storage hub where you’ll keep all your business files, brand assets, client documents, and administrative materials. Securely store up to 15GB and access your business files from anywhere. Save space on your hard drive while keeping your desktop organized and clean.', screenshotUrl: ' https://bucket.mlcdn.com/a/3336/3336910/images/b33a65b1fa873a4f0689e7adf4225a57d99324a7.png', link: 'https://workspace.google.com/products/drive/#download/' },
+                    
+    { text: 'Centralize all your essential apps and workflows in one clean, distraction-free interface.', link: 'https://ferdium.org/download',  subtext: 'A desktop organizer helps you access all your communication platforms, dashboards, and productivity tools from one unified window — no more switching between tabs or searching through browser chaos.', videoUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/3ec9a66b8cec6a6bae95ebd170cbea88c0468180.png', tooltip: 'Keep all your favorite websites & online tools organized right from your desktop.' },                  
+                    
+                    
+                    { text: 'Download Your Desktop Organizer: Ferdium or Monobox Desktop App', link: 'https://ferdium.org/download',  subtext: 'Option 1: Ferdium (Free & OpenSource)', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/3ec9a66b8cec6a6bae95ebd170cbea88c0468180.png', tooltip: 'Keep all your favorite websites & online tools organized right from your desktop.' }
                 ],
                 postambleHTML: `
                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
