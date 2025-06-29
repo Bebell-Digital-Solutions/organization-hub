@@ -205,10 +205,14 @@
                 title: 'Workspace Foundation',
                 icon: 'hard-drive',
                 items: [
-                    { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=User+Accounts+Setting' },
-                    { text: 'Download Google Chrome', link: 'https://www.google.com/chrome/' },
-                    { text: 'Download Google Drive', link: 'https://drive.google.com/drive/download' },
-                    { text: 'Download Ferdium', link: 'https://ferdium.org/download', tooltip: 'An all-in-one messenger app to keep your communications organized.' }
+                    { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', },
+                    
+                   
+                    
+                    
+                    { text: 'Download Google Chrome Browser', subtext: 'On Windows: Settings', link: 'https://www.google.com/chrome/',  screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/e2edf57b6a00d5d317d961ad2418fad00309559a.png' },
+                    { text: 'Download Google Drive', subtext: 'On Windows: Settings', screenshotUrl: ' https://bucket.mlcdn.com/a/3336/3336910/images/10c6d29ba870e5c22eb25f2c386f8d2f85f7805b.png', link: 'https://workspace.google.com/products/drive/#download/' },
+                    { text: 'Download Ferdium or Monobox Desktop App', link: 'https://ferdium.org/download',  subtext: 'On Windows: Settings', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/3ec9a66b8cec6a6bae95ebd170cbea88c0468180.png', tooltip: 'Keep all your favorite websites & online tools organized right from your desktop.' }
                 ],
                 postambleHTML: `
                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
@@ -223,8 +227,8 @@
                 title: 'Essential Accounts Setup',
                 icon: 'at-sign',
                 items: [
-                    { text: 'Create a Business Gmail Account', subtext: 'Use the format: `yourbusinessname@gmail.com`.', link: 'https://accounts.google.com/signup', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
-                    { text: 'Activate Core Google Workspace Tools', subtext: 'Ensure Google Drive, Calendar, and Keep Notes are active with your new account.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Workspace+Apps' },
+                    { text: 'Create a Gmail Account for your Business', subtext: 'Use the format: `yourbusinessname@gmail.com`.', subtext: 'On Windows: Settings', link: 'https://accounts.google.com/signup', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/e4f5a4e5b14392f7af008d06d1e99d8ff42cf86a.png' },
+                    { text: 'Activate Core Google Workspace Tools', subtext: 'Ensure Google Drive, Calendar, and Keep Notes are active with your new account.', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/8f94add1effa0940b8b52e8e897e3e2079e351d5.gif' },
                     { text: 'Set Up Chrome\'s Password Manager', subtext: 'Go to Chrome Settings > Autofill > Passwords to securely save your new credentials.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Chrome+Password+Manager', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' }
                 ],
                 postambleHTML: `
@@ -563,13 +567,13 @@
             if(!summaryList) return;
 
             const checklistItems = [
-                'Work user account created',
-                'Business Gmail active',
-                'Chrome bookmarks set',
-                'Folder structure built',
-                'Key extensions installed',
-                'Notion/Ferdium configured',
-                'Daily workflow scheduled'
+                '✅ Work user account created',
+                '✅ Business Gmail active',
+                '✅ Chrome bookmarks set',
+                '✅ Folder structure built',
+                '✅ Key extensions installed',
+                '✅ Notion/Ferdium configured',
+                '✅ Daily workflow scheduled'
             ];
             
             summaryList.innerHTML = checklistItems.map(item => `<li>${item}</li>`).join('');
