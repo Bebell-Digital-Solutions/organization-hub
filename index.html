@@ -198,26 +198,53 @@
 
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sectionsData = [
-            {
-                id: 'workspace-foundation',
-                title: 'Workspace Foundation',
-                icon: 'hard-drive',
-                items: [
-                    { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', screenshot: true, video: true },
-                    { text: 'Download Google Chrome', link: 'https://www.google.com/chrome/' },
-                    { text: 'Download Google Drive', link: 'https://drive.google.com/drive/download' },
-                    { text: 'Download Ferdium', link: 'https://ferdium.org/download', tooltip: 'An all-in-one messenger app to keep your communications organized.' }
-                ],
-                postambleHTML: `
-                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
-                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
-                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="lightbulb" class="w-4 h-4"></i>Beginner Tip</h5>
-                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Use a different desktop wallpaper for your work account to visually separate it from your personal one.</p>
-                        </div>
-                    </div>`
-            },
+document.addEventListener('DOMContentLoaded', () => {
+    const sectionsData = [
+        {
+            id: 'workspace-foundation',
+            title: 'Workspace Foundation',
+            icon: 'hard-drive',
+            preambleHTML: `
+                <div class="mb-4 p-4 bg-blue-50 dark:bg-slate-800 rounded-lg">
+                    <p class="text-slate-700 dark:text-slate-200">
+                        <strong>Why this matters:</strong> A well-organized digital workspace is essential for productivity. 
+                        Research shows that professionals waste <strong>5+ hours weekly</strong> searching for files, 
+                        and clutter can reduce focus by <strong>up to 40%</strong>. By creating a dedicated foundation, 
+                        you'll work faster, think clearer, and make fewer mistakes.
+                    </p>
+                </div>
+            `,
+            items: [
+            { 
+            text: 'Why Organization Matters', 
+           subtext: `
+                <div class="mb-3">
+                    <p class="mb-2">A well-organized digital workspace is your secret weapon for business success. Research consistently shows that clutter and disorganization:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>Saves Time</strong>: Professionals waste 5+ hours weekly searching for files</li>
+                        <li><strong>Boosts Focus</strong>: Reduces cognitive load by up to 40%</li>
+                        <li><strong>Improves Results</strong>: By starting with a clean foundation, you'll work faster, think clearer, and make fewer mistakes</li>
+                    </ul>
+                </div>
+            `, 
+            html: true,
+            screenshot: true, 
+            video: true 
+        },
+                { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', screenshot: true, video: true },
+                { text: 'Download Google Chrome', link: 'https://www.google.com/chrome/' },
+                { text: 'Download Google Drive', link: 'https://drive.google.com/drive/download' },
+                { text: 'Download Ferdium', link: 'https://ferdium.org/download', tooltip: 'An all-in-one messenger app to keep your communications organized.' }
+            ],
+            postambleHTML: `
+                <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                    <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                        <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="lightbulb" class="w-4 h-4"></i>Beginner Tip</h5>
+                        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Use a different desktop wallpaper for your work account to visually separate it from your personal one.</p>
+                    </div>
+                </div>`
+        },
+        // ... other sections
             {
                 id: 'accounts-setup',
                 title: 'Essential Accounts Setup',
