@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Workspace Setup Guide</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fef2f9',
+                            100: '#fce7f4',
+                            200: '#f9cfea',
+                            300: '#f5a8d9',
+                            400: '#ef7cc1',
+                            500: '#e54fab',
+                            600: '#DF1783',
+                            700: '#c5136f',
+                            800: '#a3155d',
+                            900: '#88184f',
+                            950: '#52072c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #DF1783;
+        }
+        .sidebar-transition { transition: transform 0.3s ease-in-out; }
+        .progress-bar-inner { transition: width 0.5s ease-in-out; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 220px;
+            background-color: #334155;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            font-weight: normal;
+        }
+        .dark .tooltip .tooltip-text {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #334155 transparent transparent transparent;
+        }
+        .dark .tooltip .tooltip-text::after {
+            border-color: #f1f5f9 transparent transparent transparent;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Nav link styles */
+        .nav-link.active {
+            background-color: #fef2f9; /* primary-50 */
+            color: #DF1783; /* primary-600 */
+            font-weight: 600;
+        }
+        .dark .nav-link.active {
+            background-color: #52072c; /* primary-950 */
+            color: #f5a8d9 /* primary-300 */
+        }
+
+        /* Code block styles */
+        .notion-code {
+            background-color: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 6px;
+            padding: 12px; font-family: 'Courier New', monospace; font-size: 14px;
+            color: #374151; white-space: pre; overflow-x: auto;
+        }
+        .dark .notion-code { background-color: #1e293b; border-color: #4b5563; color: #f3f4f6; }
+        
+        /* Aspect Ratio for video placeholders */
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+        }
+        .aspect-w-16 > * {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        
+        
+                .custom-image-widget {
+            position: fixed !important;
+            top: 50px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            right: 0px;
+            z-index: 999;
+        }
+        
+        .custom-image {
+            width: 70px;
+            height: auto;
+            transition: transform 0.2s;
+        }
+        
+        .custom-image-widget:hover .custom-image {
+            transform: scale(1.05);
+        }
+        
+        .custom-image-widget:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+              #back-to-top {
+            position: fixed;
+            bottom: 80px; 
+            right: 45px;
+            display: none;
+            cursor: pointer;
+            z-index: 1000; 
+        }  
+        
+        
+
+    </style>
+    
+  <!-- Widget BACK-TO-TOP -->
+<script>
+// Create Back-to-Top Button Dynamically
+document.addEventListener("DOMContentLoaded", function () {
+    // Create the button container
+    const backToTop = document.createElement("div");
+    backToTop.id = "back-to-top";
+    backToTop.style.position = "fixed";
+    backToTop.style.bottom = "20px";
+    backToTop.style.right = "20px";
+    backToTop.style.display = "none";
+    backToTop.style.cursor = "pointer";
+    backToTop.style.zIndex = "9999";
+
+    // Create the image inside the button
+    const backToTopImg = document.createElement("img");
+    backToTopImg.src = "https://bucket.mlcdn.com/a/3336/3336910/images/29840e122b950f88fdca23072015101b427a9112.png";
+    backToTopImg.alt = "Volver arriba";
+    backToTopImg.style.width = "40px";
+    backToTopImg.style.height = "40px";
+
+    // Append image to the button
+    backToTop.appendChild(backToTopImg);
+
+    // Append button to the body
+    document.body.appendChild(backToTop);
+
+    // Scroll Event Listener
+    window.addEventListener("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    // Click Event for Scrolling to Top
+    backToTop.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
+</script>
+<!-- End Widget BACK-TO-TOP -->  
+    
+    
+    
+    
+    
+</head>
+
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 font-sans">
+
+
+    <!-- Mobile Header -->
+    <header class="lg:hidden sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg z-20 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between p-4">
+            <button id="mobile-menu-btn" class="p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="text-lg font-bold text-primary-600 dark:text-primary-400">Workspace Guide</h1>
+            <button id="theme-toggle-mobile" class="p-2">
+                <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
+                <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 p-6 flex flex-col z-30 transform -translate-x-full lg:translate-x-0 sidebar-transition custom-scrollbar overflow-y-auto">
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 text-white"></i>
+            </div>
+            <h1 class="text-xl font-bold text-slate-800 dark:text-white">Workspace Setup</h1>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">An interactive guide for solopreneurs using free tools.</p>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-1 text-sm">
+                <span class="font-semibold">Overall Progress</span>
+                <span id="progress-percentage">0%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-primary-600 h-2.5 rounded-full progress-bar-inner" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav id="sidebar-nav" class="flex flex-col space-y-1">
+            <!-- Navigation links will be dynamically inserted here -->
+        </nav>
+        
+        <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-700">
+            <button id="theme-toggle-desktop" class="w-full flex items-center justify-between p-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                <span>Toggle Theme</span>
+                <span>
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                </span>
+            </button>
+        </div>
+    </aside>
+    
+    
+      <div class="custom-image-widget" style="position: relative; display: inline-block;">
+        <a href="https://bebell-digital-solutions.github.io/Market-Research-Hub/espanol">
+            <img class="custom-image" 
+                 src="https://bucket.mlcdn.com/a/3336/3336910/images/138f14304ea21715dfae64ae5fe1d71b08c2d451.png" 
+                 alt="English Translation"
+                 style="display: block;"> 
+        </a>
+    </div>
+      
+    
+    
+
+    <!-- Main Content -->
+    <main class="lg:ml-72 p-6 sm:p-8 md:p-10">
+    
+     <div class="text-center mb-12">
+                        <br>
+                        <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-slate-100 mb-6">
+                            Workspace Setup
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">Tutorial</span>
+                        </h1>
+                        <p class="text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto mb-8">
+                            Your comprehensive guide to design and setup an organized, clean and functional digital environment tailored to your business. 🗂️
+                        </p>
+</div>
+    
+    
+    
+    
+        <div id="content-sections" class="max-w-5xl mx-auto space-y-8">
+            <!-- Sections will be dynamically inserted here -->
+        </div>
+        
+        <footer class="mt-12 text-center text-sm text-slate-500 dark:text-slate-400">
+             <p>&copy; 2024. Built by Bebell Digital Solutions.</p>
+             <p class="mt-1">All product names, logos, and brands are property of their respective owners.</p>
+        </footer>
+    </main>
+    
+    <div id="overlay" class="fixed inset-0 bg-black/50 z-20 hidden lg:hidden"></div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sectionsData = [
+            {
+                id: 'workspace-foundation',
+                title: 'Workspace Foundation',
+                icon: 'hard-drive',
+                items: [
+                    { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', },
+     
+                    { text: 'Download Google Chrome Browser', subtext: 'Visit: https://www.google.com/chrome/ on your browser and download the desktop application.', link: 'https://www.google.com/chrome/',  screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/e2edf57b6a00d5d317d961ad2418fad00309559a.png' },
+                    { text: 'Download Google Drive', subtext: 'On Windows: Settings', screenshotUrl: ' https://bucket.mlcdn.com/a/3336/3336910/images/10c6d29ba870e5c22eb25f2c386f8d2f85f7805b.png', link: 'https://workspace.google.com/products/drive/#download/' },
+                    { text: 'Download Ferdium or Monobox Desktop App', link: 'https://ferdium.org/download',  subtext: 'On Windows: Settings', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/3ec9a66b8cec6a6bae95ebd170cbea88c0468180.png', tooltip: 'Keep all your favorite websites & online tools organized right from your desktop.' }
+                ],
+                postambleHTML: `
+                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="lightbulb" class="w-4 h-4"></i>Beginner Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Use a different desktop wallpaper for your work account to visually separate it from your personal one.</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'accounts-setup',
+                title: 'Essential Accounts Setup',
+                icon: 'at-sign',
+                items: [
+                    { text: 'Create a Gmail Account for your Business', subtext: 'Use the format: `yourbusinessname@gmail.com`.', subtext: 'On Windows: Settings', link: 'https://accounts.google.com/signup', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/e4f5a4e5b14392f7af008d06d1e99d8ff42cf86a.png' },
+                    { text: 'Activate Core Google Workspace Tools', subtext: 'Ensure Google Drive, Calendar, and Keep Notes are active with your new account.', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/8f94add1effa0940b8b52e8e897e3e2079e351d5.gif' },
+                    { text: 'Set Up Chrome\'s Password Manager', subtext: 'Go to Chrome Settings > Autofill > Passwords to securely save your new credentials.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Chrome+Password+Manager', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' }
+                ],
+                postambleHTML: `
+                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i>Pro Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Bookmark these pages in Chrome for one-click access: Gmail, Drive, and Calendar.</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'browser-customization',
+                title: 'Browser Customization',
+                icon: 'chrome',
+                items: [
+                    { text: 'Enable the Bookmarks Bar', subtext: 'Go to Chrome Settings > Appearance > Toggle "Show bookmarks bar" to on.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Enable+Bookmarks+Bar' },
+                    { text: 'Add Priority Bookmarks', subtext: 'Add links to Gmail, Google Drive, and Google Calendar directly to your bookmarks bar.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Priority+Bookmarks' },
+                    { text: 'Create a "Work" Profile', subtext: 'Click your profile icon (top-right) > "Add" > Name it "Work" to keep everything separate.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=New+Chrome+Profile', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Set a Clean & Inspiring New Tab', subtext: 'Install a free start page to stay focused.', link: 'https://tinyurl.com/momentum-dash', tooltip: 'Momentum Dash provides a beautiful daily photo and quote.' }
+                ],
+                postambleHTML: `
+                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                         <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Section Video Guide</h4>
+                         <div class="aspect-w-16 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden">
+                              <video controls muted loop playsinline preload="metadata" src="https://assets.mixkit.co/videos/preview/mixkit-office-desk-with-a-computer-and-a-laptop-3221-large.mp4#t=0.1" class="w-full h-full object-cover">
+                                Your browser does not support the video tag.
+                              </video>
+                         </div>
+                         <p class="text-center text-xs text-slate-500 mt-2">A video explaining how to organize your Chrome browser.</p>
+                    </div>`
+            },
+            {
+                id: 'folder-organization',
+                title: 'Folder Organization',
+                icon: 'folder-git-2',
+                items: [
+                    { text: 'Create the Main Folder Structure', subtext: 'Manually create the folders as shown below on your computer.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Desktop+Folder+Structure' },
+                    { text: 'Sync Structure with Google Drive', subtext: 'Install Google Drive for desktop and select your "Business" folder to sync.', link: 'https://www.google.com/drive/download/', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Adopt a File Naming Convention', subtext: 'Use `YYYY-MM-DD_ProjectName_DocumentType`. Example: `2024-06-29_WebsiteRedesign_Contract`.' }
+                ],
+                postambleHTML: `
+                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700 space-y-4">
+                        <div>
+                             <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Folder Structure</h4>
+                             <div class="notion-code">Business (Main Folder)
+ ├── Admin
+ ├── Clients
+ ├── Financials
+ ├── Projects
+ └── Resources</div>
+                        </div>
+                        <div>
+                             <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Example Screenshot</h4>
+                             <div class="bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden">
+                                <img src="https://placehold.co/600x350/e2e8f0/475569?text=Finder+View+of+Folders" alt="Example of folder structure" loading="lazy" class="w-full h-auto object-cover">
+                             </div>
+                             <p class="text-xs text-center text-slate-500 mt-1">A visual example of the folder structure on your desktop.</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'chrome-extensions',
+                title: 'Chrome Extensions',
+                icon: 'puzzle',
+                items: [
+                    { text: 'Install an All-in-One AI Toolbox', link: 'https://monica.im/extension', subtext: 'Monica provides a ChatGPT-powered sidebar for quick summaries, writing, and search enhancement.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Install a Screen Capture Tool', link: 'https://tinyurl.com/awesome-screenshot', subtext: 'Awesome Screenshot for capturing full pages, visible parts, or recording your screen.' },
+                    { text: 'Install a Tab Manager', link: 'https://workona.com/', subtext: 'Workona helps you organize your tabs into project-based workspaces to reduce clutter.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Install Save to Google Drive', link: 'https://tinyurl.com/save-to-drive', subtext: 'Save any webpage, image, or link directly to your Google Drive with one click.' }
+                ],
+                postambleHTML: `
+                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-yellow-50 dark:bg-slate-700/50 border-l-4 border-yellow-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-yellow-700 dark:text-yellow-300 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4"></i>Warning</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Avoid installing more than 5-7 extensions to keep your Chrome browser running fast and smoothly.</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'desktop-apps',
+                title: 'Desktop Apps',
+                icon: 'layout-dashboard',
+                 items: [
+                    { text: 'Install Project Management App: Notion', link: 'https://www.notion.so/desktop', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Notion+Desktop+App'},
+                    { text: 'Install Comms Hub: Ferdium', link: 'https://ferdium.org/download', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Ferdium+Interface'},
+                    { text: 'Use Online Writing App: Google Docs', link: 'https://docs.google.com'},
+                    { text: 'Install Graphics App: Canva', link: 'https://www.canva.com/download/'},
+                    { text: 'Configure Ferdium as Your Comms Hub', subtext: 'Inside Ferdium, add services for Gmail, Google Calendar, WhatsApp, and Slack to centralize notifications.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Configuring+Ferdium' }
+                ]
+            },
+            {
+                id: 'ai-automation',
+                title: 'AI & Automation',
+                icon: 'bot',
+                items: [
+                    { text: 'Set Up an AI Writing Assistant', subtext: 'Create an account with DeepSeek or ChatGPT. Use the Monica extension for quick access in your browser.', link: 'https://chat.openai.com', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Automate Repetitive Tasks with Zapier', subtext: 'Sign up for the Zapier Free Tier to connect your apps. Start with a simple automation like "Save new Gmail attachments to a specific Google Drive folder".', link: 'https://zapier.com/apps/start', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Use an AI Meeting Assistant', subtext: 'Leverage Google Meet\'s built-in live caption and summary features for better meeting notes.', link: 'https://meet.google.com/', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Meet+Captions' }
+                ],
+                postambleHTML: `
+                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i>Prompt Example</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">In ChatGPT/Monica, try: "Draft a professional reply to a client inquiry about my [service] pricing. Be polite and ask for a good time to schedule a call."</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'file-management',
+                title: 'File Management',
+                icon: 'files',
+                items: [
+                    { text: 'Make Key Folders Available Offline', subtext: 'In your Google Drive folder on your computer, right-click important folders (like "Projects") and select "Available offline".', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Drive+Offline+Access' },
+                    { text: 'Bookmark Quick File Converters', subtext: 'Keep TinyWow (for PDF/Image conversion) and Remove.bg (for background removal) handy.', link: 'https://tinywow.com' },
+                    { text: 'Establish a Weekly Backup Routine', subtext: 'Every Friday, drag your main "Business" folder from your desktop to an external hard drive.' }
+                ],
+                postambleHTML: `
+                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i>Backup Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">For a full account backup, use <a href="https://takeout.google.com" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Google Takeout</a> once a month to download an archive of all your Google data.</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'daily-workflow',
+                title: 'Daily Workflow',
+                icon: 'calendar-check',
+                 items: [
+                    { text: 'Perform a Morning Check (8:00-8:30 AM)', subtext: 'Open Google Calendar to see your day. Process urgent emails in Gmail, using the "Snooze" feature for non-urgent items.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Calendar+View' },
+                    { text: 'Schedule Deep Work Blocks (9-11 AM)', subtext: 'Use a timer like Pomofocus. Close all unnecessary tabs and work only in Notion or your primary work app.', link: 'https://pomofocus.io/' },
+                    { text: 'Block Time for Afternoon Tasks', subtext: 'Schedule client meetings via Google Meet and dedicated time for creative work in Canva or Google Docs.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Time-Blocking+Example' }
+                ],
+                postambleHTML: `
+                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Daily Flow Example</h4>
+                            <div class="flex items-center justify-around text-center text-sm p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                                <div class="flex-1">
+                                    <span class="p-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md">Morning Check</span>
+                                </div>
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400 mx-2"></i>
+                                <div class="flex-1">
+                                   <span class="p-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-md">Deep Work</span>
+                                </div>
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400 mx-2"></i>
+                                <div class="flex-1">
+                                   <span class="p-2 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-md">Client/Admin</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i>Pro Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">In Google Calendar, color-code your events to quickly see your schedule breakdown (e.g., Green for Sales, Blue for Admin, Purple for Creative).</p>
+                        </div>
+                    </div>`
+            },
+            {
+                id: 'maintenance',
+                title: 'Maintenance',
+                icon: 'wrench',
+                items: [
+                    { text: 'Weekly: Clean Your Digital Workspace', subtext: 'Every Friday, clear your Downloads folder and archive completed projects or tasks in Notion.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Weekly: Run a Security Check', subtext: 'In Chrome, go to Settings > Safety Check and click "Check now".', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Chrome+Safety+Check' },
+                    { text: 'Weekly: Audit Your Tools', subtext: 'Quickly review and uninstall any desktop apps or browser extensions you haven\'t used.' },
+                    { text: 'Monthly: Update All Desktop Apps', subtext: 'Check for and install updates for Notion, Ferdium, Canva, etc.' },
+                ]
+            },
+            {
+                id: 'final-checklist',
+                title: 'Final Checklist',
+                icon: 'party-popper',
+                 postambleHTML: `
+                    <div class="p-4">
+                        <div class="text-center p-6 bg-green-50 dark:bg-green-900/50 rounded-lg border border-green-200 dark:border-green-800">
+                             <div class="flex items-center gap-3 mb-4 w-max mx-auto">
+                                <i data-lucide="award" class="w-10 h-10 text-green-600"></i>
+                                <h2 class="text-2xl font-bold text-green-800 dark:text-green-200">Congratulations!</h2>
+                             </div>
+                            <p class="text-slate-600 dark:text-slate-300">Your organized digital workspace is ready. You've built a powerful foundation for productivity.</p>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Completion Summary:</h4>
+                            <ul id="final-summary-list" class="list-disc list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <!-- Summary will be populated by JS -->
+                            </ul>
+                        </div>
+                    </div>`
+            }
+        ];
+
+        let progress = {};
+        const totalCheckboxes = sectionsData.reduce((acc, section) => acc + (section.items ? section.items.length : 0), 0);
+
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const contentSections = document.getElementById('content-sections');
+
+        function init() {
+            createSections();
+            createNavLinks();
+            loadProgress();
+            updateProgressBar();
+            updateFinalChecklist();
+            initTheme();
+            initMobileMenu();
+            initScrollSpy();
+            lucide.createIcons();
+        }
+        
+        function createSections() {
+            sectionsData.forEach(section => {
+                const sectionEl = document.createElement('section');
+                sectionEl.id = section.id;
+                sectionEl.className = 'bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden';
+
+                let itemsHtml = (section.items || []).map((item, index) => {
+                    const checkboxId = `${section.id}-item-${index}`;
+                    
+                    const placeholderHtml = `
+                        <div class="pl-9 mt-3 space-y-3">
+                            ${item.videoUrl ? `
+                                <div class="p-2 bg-slate-100 dark:bg-slate-700/50 rounded-lg">
+                                    <div class="aspect-w-16 bg-slate-200 dark:bg-slate-600 rounded overflow-hidden">
+                                        <video controls muted loop playsinline preload="metadata" src="${item.videoUrl}#t=0.1" class="w-full h-full object-cover">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <p class="text-xs text-center text-slate-500 mt-1">Demo Video</p>
+                                </div>
+                            ` : ''}
+                            ${item.screenshotUrl ? `
+                                <div class="p-2 bg-slate-100 dark:bg-slate-700/50 rounded-lg">
+                                     <img src="${item.screenshotUrl}" alt="Screenshot for ${item.text}" loading="lazy" class="rounded-md w-full h-auto object-cover bg-slate-200 dark:bg-slate-600 aspect-[16/9]">
+                                     <p class="text-xs text-center text-slate-500 mt-1">Example Screenshot</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+
+                    return `
+                        <div class="p-4 border-b border-slate-200 dark:border-slate-700 last:border-b-0">
+                            <div class="flex items-start">
+                                <input type="checkbox" id="${checkboxId}" data-section="${section.id}" class="h-5 w-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500 mt-1 cursor-pointer flex-shrink-0" onchange="toggleProgress('${checkboxId}')">
+                                <label for="${checkboxId}" class="ml-4 flex-1 text-sm text-slate-700 dark:text-slate-300 cursor-pointer">
+                                    <span class="font-medium text-slate-800 dark:text-slate-200">${item.text}</span>
+                                    ${item.subtext ? `<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">${item.subtext}</p>` : ''}
+                                    <div class="flex items-center flex-wrap gap-x-4 gap-y-2 mt-2">
+                                        ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-white bg-primary-600 hover:bg-primary-700 dark:hover:bg-primary-500 px-3 py-1.5 rounded-md shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-slate-800 no-underline"><i data-lucide="external-link" class="w-3.5 h-3.5"></i>Visit Tool</a>` : ''}
+                                        ${item.tooltip ? `<div class="tooltip flex items-center gap-1 text-xs text-slate-500"><i data-lucide="info" class="w-3 h-3"></i>Info<span class="tooltip-text">${item.tooltip}</span></div>` : ''}
+                                    </div>
+                                </label>
+                            </div>
+                            ${ (item.videoUrl || item.screenshotUrl) ? placeholderHtml : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                sectionEl.innerHTML = `
+                    <div class="p-4 text-left border-b border-slate-200 dark:border-slate-700">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="${section.icon}" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100">${section.title}</h2>
+                        </div>
+                    </div>
+                    <div class="content-body">
+                        ${itemsHtml}
+                        ${section.postambleHTML || ''}
+                    </div>
+                `;
+                contentSections.appendChild(sectionEl);
+            });
+        }
+        
+        function createNavLinks() {
+            sectionsData.forEach(section => {
+                const link = document.createElement('a');
+                link.href = `#${section.id}`;
+                link.className = 'nav-link flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700';
+                link.innerHTML = `<i data-lucide="${section.icon}" class="w-4 h-4"></i><span>${section.title}</span>`;
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    const targetEl = document.getElementById(section.id);
+                    if (targetEl) {
+                      // Adjust for sticky header on mobile
+                      const offset = 0;
+                      const bodyRect = document.body.getBoundingClientRect().top;
+                      const elementRect = targetEl.getBoundingClientRect().top;
+                      const elementPosition = elementRect - bodyRect;
+                      const offsetPosition = elementPosition - offset;
+                      
+                      window.scrollTo({
+                         top: offsetPosition,
+                         behavior: 'smooth'
+                      });
+                    }
+                    if(window.innerWidth < 1024) {
+                        document.getElementById('sidebar').classList.add('-translate-x-full');
+                        document.getElementById('overlay').classList.add('hidden');
+                    }
+                };
+                sidebarNav.appendChild(link);
+            });
+        }
+
+        window.toggleProgress = (id) => {
+            progress[id] = document.getElementById(id).checked;
+            saveProgress();
+            updateProgressBar();
+            updateFinalChecklist();
+        };
+
+        function saveProgress() {
+            localStorage.setItem('workspaceSetupProgress', JSON.stringify(progress));
+        }
+
+        function loadProgress() {
+            const savedProgress = JSON.parse(localStorage.getItem('workspaceSetupProgress')) || {};
+            progress = savedProgress;
+            Object.keys(progress).forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.checked = progress[id];
+                }
+            });
+        }
+
+        function updateProgressBar() {
+            const checkedCount = Object.values(progress).filter(Boolean).length;
+            const percentage = totalCheckboxes > 0 ? Math.round((checkedCount / totalCheckboxes) * 100) : 0;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-percentage').textContent = `${percentage}%`;
+        }
+        
+        function updateFinalChecklist() {
+            const summaryList = document.getElementById('final-summary-list');
+            if(!summaryList) return;
+
+            const checklistItems = [
+                '✅ Work user account created',
+                '✅ Business Gmail active',
+                '✅ Chrome bookmarks set',
+                '✅ Folder structure built',
+                '✅ Key extensions installed',
+                '✅ Notion/Ferdium configured',
+                '✅ Daily workflow scheduled'
+            ];
+            
+            summaryList.innerHTML = checklistItems.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function initTheme() {
+            const toggleButtons = [document.getElementById('theme-toggle-desktop'), document.getElementById('theme-toggle-mobile')];
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('theme');
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            toggleButtons.forEach(btn => btn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            }));
+        }
+
+        function initMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const openBtn = document.getElementById('mobile-menu-btn');
+
+            openBtn.addEventListener('click', () => {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        }
+        
+        function initScrollSpy() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                           link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                    }
+                });
+            }, { rootMargin: "-40% 0px -60% 0px" });
+
+            sectionsData.forEach(section => {
+                const target = document.getElementById(section.id);
+                if (target) {
+                    observer.observe(target);
+                }
+            });
+        }
+
+        init();
+    });
+    </script>
+</body>
+</html>
