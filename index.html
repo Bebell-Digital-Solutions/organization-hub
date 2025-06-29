@@ -198,61 +198,34 @@
 
 
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const sectionsData = [
-        {
-            id: 'workspace-foundation',
-            title: 'Workspace Foundation',
-            icon: 'hard-drive',
-            preambleHTML: `
-                <div class="mb-4 p-4 bg-blue-50 dark:bg-slate-800 rounded-lg">
-                    <p class="text-slate-700 dark:text-slate-200">
-                        <strong>Why this matters:</strong> A well-organized digital workspace is essential for productivity. 
-                        Research shows that professionals waste <strong>5+ hours weekly</strong> searching for files, 
-                        and clutter can reduce focus by <strong>up to 40%</strong>. By creating a dedicated foundation, 
-                        you'll work faster, think clearer, and make fewer mistakes.
-                    </p>
-                </div>
-            `,
-            items: [
-            { 
-            text: 'Why Organization Matters', 
-           subtext: `
-                <div class="mb-3">
-                    <p class="mb-2">A well-organized digital workspace is your secret weapon for business success. Research consistently shows that clutter and disorganization:</p>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li><strong>Saves Time</strong>: Professionals waste 5+ hours weekly searching for files</li>
-                        <li><strong>Boosts Focus</strong>: Reduces cognitive load by up to 40%</li>
-                        <li><strong>Improves Results</strong>: By starting with a clean foundation, you'll work faster, think clearer, and make fewer mistakes</li>
-                    </ul>
-                </div>
-            `, 
-            html: true,
-            screenshot: true, 
-            video: true 
-        },
-                { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', screenshot: true, video: true },
-                { text: 'Download Google Chrome', link: 'https://www.google.com/chrome/' },
-                { text: 'Download Google Drive', link: 'https://drive.google.com/drive/download' },
-                { text: 'Download Ferdium', link: 'https://ferdium.org/download', tooltip: 'An all-in-one messenger app to keep your communications organized.' }
-            ],
-            postambleHTML: `
-                <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
-                    <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
-                        <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="lightbulb" class="w-4 h-4"></i>Beginner Tip</h5>
-                        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Use a different desktop wallpaper for your work account to visually separate it from your personal one.</p>
-                    </div>
-                </div>`
-        },
-        // ... other sections
+    document.addEventListener('DOMContentLoaded', () => {
+        const sectionsData = [
+            {
+                id: 'workspace-foundation',
+                title: 'Workspace Foundation',
+                icon: 'hard-drive',
+                items: [
+                    { text: 'Create a Dedicated User Account', subtext: 'On Windows: Settings > Accounts > "Add Work Account". On macOS: System Preferences > Users & Groups > "+". Name it "Business" or "[Your Venture] Workspace".', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=User+Accounts+Setting' },
+                    { text: 'Download Google Chrome', link: 'https://www.google.com/chrome/' },
+                    { text: 'Download Google Drive', link: 'https://drive.google.com/drive/download' },
+                    { text: 'Download Ferdium', link: 'https://ferdium.org/download', tooltip: 'An all-in-one messenger app to keep your communications organized.' }
+                ],
+                postambleHTML: `
+                    <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="lightbulb" class="w-4 h-4"></i>Beginner Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Use a different desktop wallpaper for your work account to visually separate it from your personal one.</p>
+                        </div>
+                    </div>`
+            },
             {
                 id: 'accounts-setup',
                 title: 'Essential Accounts Setup',
                 icon: 'at-sign',
                 items: [
-                    { text: 'Create a Business Gmail Account', subtext: 'Use the format: `yourbusinessname@gmail.com`.', link: 'https://accounts.google.com/signup', video: true },
-                    { text: 'Activate Core Google Workspace Tools', subtext: 'Ensure Google Drive, Calendar, and Keep Notes are active with your new account.', screenshot: true },
-                    { text: 'Set Up Chrome\'s Password Manager', subtext: 'Go to Chrome Settings > Autofill > Passwords to securely save your new credentials.', screenshot: true, video: true }
+                    { text: 'Create a Business Gmail Account', subtext: 'Use the format: `yourbusinessname@gmail.com`.', link: 'https://accounts.google.com/signup', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Activate Core Google Workspace Tools', subtext: 'Ensure Google Drive, Calendar, and Keep Notes are active with your new account.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Workspace+Apps' },
+                    { text: 'Set Up Chrome\'s Password Manager', subtext: 'Go to Chrome Settings > Autofill > Passwords to securely save your new credentials.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Chrome+Password+Manager', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' }
                 ],
                 postambleHTML: `
                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
@@ -267,19 +240,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Browser Customization',
                 icon: 'chrome',
                 items: [
-                    { text: 'Enable the Bookmarks Bar', subtext: 'Go to Chrome Settings > Appearance > Toggle "Show bookmarks bar" to on.', screenshot: true },
-                    { text: 'Add Priority Bookmarks', subtext: 'Add links to Gmail, Google Drive, and Google Calendar directly to your bookmarks bar.', screenshot: true },
-                    { text: 'Create a "Work" Profile', subtext: 'Click your profile icon (top-right) > "Add" > Name it "Work" to keep everything separate.', screenshot: true, video: true },
+                    { text: 'Enable the Bookmarks Bar', subtext: 'Go to Chrome Settings > Appearance > Toggle "Show bookmarks bar" to on.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Enable+Bookmarks+Bar' },
+                    { text: 'Add Priority Bookmarks', subtext: 'Add links to Gmail, Google Drive, and Google Calendar directly to your bookmarks bar.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Priority+Bookmarks' },
+                    { text: 'Create a "Work" Profile', subtext: 'Click your profile icon (top-right) > "Add" > Name it "Work" to keep everything separate.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=New+Chrome+Profile', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
                     { text: 'Set a Clean & Inspiring New Tab', subtext: 'Install a free start page to stay focused.', link: 'https://tinyurl.com/momentum-dash', tooltip: 'Momentum Dash provides a beautiful daily photo and quote.' }
                 ],
                 postambleHTML: `
                      <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
                          <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Section Video Guide</h4>
-                         <div class="aspect-w-16 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center">
-                              <div class="text-center">
-                                 <i data-lucide="video" class="w-10 h-10 text-slate-400 dark:text-slate-500 mx-auto"></i>
-                                 <p class="text-sm mt-2 text-slate-500">Video Placeholder</p>
-                              </div>
+                         <div class="aspect-w-16 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden">
+                              <video controls muted loop playsinline preload="metadata" src="https://assets.mixkit.co/videos/preview/mixkit-office-desk-with-a-computer-and-a-laptop-3221-large.mp4#t=0.1" class="w-full h-full object-cover">
+                                Your browser does not support the video tag.
+                              </video>
                          </div>
                          <p class="text-center text-xs text-slate-500 mt-2">A video explaining how to organize your Chrome browser.</p>
                     </div>`
@@ -289,8 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Folder Organization',
                 icon: 'folder-git-2',
                 items: [
-                    { text: 'Create the Main Folder Structure', subtext: 'Manually create the folders as shown below on your computer.', screenshot: true },
-                    { text: 'Sync Structure with Google Drive', subtext: 'Install Google Drive for desktop and select your "Business" folder to sync.', link: 'https://www.google.com/drive/download/', video: true },
+                    { text: 'Create the Main Folder Structure', subtext: 'Manually create the folders as shown below on your computer.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Desktop+Folder+Structure' },
+                    { text: 'Sync Structure with Google Drive', subtext: 'Install Google Drive for desktop and select your "Business" folder to sync.', link: 'https://www.google.com/drive/download/', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
                     { text: 'Adopt a File Naming Convention', subtext: 'Use `YYYY-MM-DD_ProjectName_DocumentType`. Example: `2024-06-29_WebsiteRedesign_Contract`.' }
                 ],
                 postambleHTML: `
@@ -306,11 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div>
                              <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Example Screenshot</h4>
-                             <div class="h-40 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center">
-                                 <div class="text-center">
-                                     <i data-lucide="image" class="w-10 h-10 text-slate-400 dark:text-slate-500 mx-auto"></i>
-                                     <p class="text-sm mt-2 text-slate-500">Screenshot Placeholder</p>
-                                 </div>
+                             <div class="bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden">
+                                <img src="https://placehold.co/600x350/e2e8f0/475569?text=Finder+View+of+Folders" alt="Example of folder structure" loading="lazy" class="w-full h-auto object-cover">
                              </div>
                              <p class="text-xs text-center text-slate-500 mt-1">A visual example of the folder structure on your desktop.</p>
                         </div>
@@ -321,9 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Chrome Extensions',
                 icon: 'puzzle',
                 items: [
-                    { text: 'Install an All-in-One AI Toolbox', link: 'https://monica.im/extension', subtext: 'Monica provides a ChatGPT-powered sidebar for quick summaries, writing, and search enhancement.', video: true },
+                    { text: 'Install an All-in-One AI Toolbox', link: 'https://monica.im/extension', subtext: 'Monica provides a ChatGPT-powered sidebar for quick summaries, writing, and search enhancement.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
                     { text: 'Install a Screen Capture Tool', link: 'https://tinyurl.com/awesome-screenshot', subtext: 'Awesome Screenshot for capturing full pages, visible parts, or recording your screen.' },
-                    { text: 'Install a Tab Manager', link: 'https://workona.com/', subtext: 'Workona helps you organize your tabs into project-based workspaces to reduce clutter.', video: true },
+                    { text: 'Install a Tab Manager', link: 'https://workona.com/', subtext: 'Workona helps you organize your tabs into project-based workspaces to reduce clutter.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
                     { text: 'Install Save to Google Drive', link: 'https://tinyurl.com/save-to-drive', subtext: 'Save any webpage, image, or link directly to your Google Drive with one click.' }
                 ],
                 postambleHTML: `
@@ -339,11 +308,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Desktop Apps',
                 icon: 'layout-dashboard',
                  items: [
-                    { text: 'Install Project Management App: Notion', link: 'https://www.notion.so/desktop', screenshot: true},
-                    { text: 'Install Comms Hub: Ferdium', link: 'https://ferdium.org/download', screenshot: true},
+                    { text: 'Install Project Management App: Notion', link: 'https://www.notion.so/desktop', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Notion+Desktop+App'},
+                    { text: 'Install Comms Hub: Ferdium', link: 'https://ferdium.org/download', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Ferdium+Interface'},
                     { text: 'Use Online Writing App: Google Docs', link: 'https://docs.google.com'},
                     { text: 'Install Graphics App: Canva', link: 'https://www.canva.com/download/'},
-                    { text: 'Configure Ferdium as Your Comms Hub', subtext: 'Inside Ferdium, add services for Gmail, Google Calendar, WhatsApp, and Slack to centralize notifications.', video: true, screenshot: true }
+                    { text: 'Configure Ferdium as Your Comms Hub', subtext: 'Inside Ferdium, add services for Gmail, Google Calendar, WhatsApp, and Slack to centralize notifications.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Configuring+Ferdium' }
                 ]
             },
             {
@@ -351,9 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'AI & Automation',
                 icon: 'bot',
                 items: [
-                    { text: 'Set Up an AI Writing Assistant', subtext: 'Create an account with DeepSeek or ChatGPT. Use the Monica extension for quick access in your browser.', link: 'https://chat.openai.com', video: true },
-                    { text: 'Automate Repetitive Tasks with Zapier', subtext: 'Sign up for the Zapier Free Tier to connect your apps. Start with a simple automation like "Save new Gmail attachments to a specific Google Drive folder".', link: 'https://zapier.com/apps/start', video: true },
-                    { text: 'Use an AI Meeting Assistant', subtext: 'Leverage Google Meet\'s built-in live caption and summary features for better meeting notes.', link: 'https://meet.google.com/', screenshot: true }
+                    { text: 'Set Up an AI Writing Assistant', subtext: 'Create an account with DeepSeek or ChatGPT. Use the Monica extension for quick access in your browser.', link: 'https://chat.openai.com', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Automate Repetitive Tasks with Zapier', subtext: 'Sign up for the Zapier Free Tier to connect your apps. Start with a simple automation like "Save new Gmail attachments to a specific Google Drive folder".', link: 'https://zapier.com/apps/start', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Use an AI Meeting Assistant', subtext: 'Leverage Google Meet\'s built-in live caption and summary features for better meeting notes.', link: 'https://meet.google.com/', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Meet+Captions' }
                 ],
                 postambleHTML: `
                      <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
@@ -368,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'File Management',
                 icon: 'files',
                 items: [
-                    { text: 'Make Key Folders Available Offline', subtext: 'In your Google Drive folder on your computer, right-click important folders (like "Projects") and select "Available offline".', screenshot: true },
+                    { text: 'Make Key Folders Available Offline', subtext: 'In your Google Drive folder on your computer, right-click important folders (like "Projects") and select "Available offline".', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Drive+Offline+Access' },
                     { text: 'Bookmark Quick File Converters', subtext: 'Keep TinyWow (for PDF/Image conversion) and Remove.bg (for background removal) handy.', link: 'https://tinywow.com' },
                     { text: 'Establish a Weekly Backup Routine', subtext: 'Every Friday, drag your main "Business" folder from your desktop to an external hard drive.' }
                 ],
@@ -385,9 +354,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Daily Workflow',
                 icon: 'calendar-check',
                  items: [
-                    { text: 'Perform a Morning Check (8:00-8:30 AM)', subtext: 'Open Google Calendar to see your day. Process urgent emails in Gmail, using the "Snooze" feature for non-urgent items.', screenshot: true },
+                    { text: 'Perform a Morning Check (8:00-8:30 AM)', subtext: 'Open Google Calendar to see your day. Process urgent emails in Gmail, using the "Snooze" feature for non-urgent items.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Calendar+View' },
                     { text: 'Schedule Deep Work Blocks (9-11 AM)', subtext: 'Use a timer like Pomofocus. Close all unnecessary tabs and work only in Notion or your primary work app.', link: 'https://pomofocus.io/' },
-                    { text: 'Block Time for Afternoon Tasks', subtext: 'Schedule client meetings via Google Meet and dedicated time for creative work in Canva or Google Docs.', screenshot: true }
+                    { text: 'Block Time for Afternoon Tasks', subtext: 'Schedule client meetings via Google Meet and dedicated time for creative work in Canva or Google Docs.', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Time-Blocking+Example' }
                 ],
                 postambleHTML: `
                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700 space-y-4">
@@ -418,8 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Maintenance',
                 icon: 'wrench',
                 items: [
-                    { text: 'Weekly: Clean Your Digital Workspace', subtext: 'Every Friday, clear your Downloads folder and archive completed projects or tasks in Notion.', video: true },
-                    { text: 'Weekly: Run a Security Check', subtext: 'In Chrome, go to Settings > Safety Check and click "Check now".', screenshot: true },
+                    { text: 'Weekly: Clean Your Digital Workspace', subtext: 'Every Friday, clear your Downloads folder and archive completed projects or tasks in Notion.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4' },
+                    { text: 'Weekly: Run a Security Check', subtext: 'In Chrome, go to Settings > Safety Check and click "Check now".', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Chrome+Safety+Check' },
                     { text: 'Weekly: Audit Your Tools', subtext: 'Quickly review and uninstall any desktop apps or browser extensions you haven\'t used.' },
                     { text: 'Monthly: Update All Desktop Apps', subtext: 'Check for and install updates for Notion, Ferdium, Canva, etc.' },
                 ]
@@ -476,24 +445,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const placeholderHtml = `
                         <div class="pl-9 mt-3 space-y-3">
-                            ${item.video ? `
+                            ${item.videoUrl ? `
                                 <div class="p-2 bg-slate-100 dark:bg-slate-700/50 rounded-lg">
-                                    <div class="aspect-w-16 bg-slate-200 dark:bg-slate-600 rounded flex items-center justify-center">
-                                        <div class="text-center">
-                                            <i data-lucide="video" class="w-8 h-8 text-slate-400 dark:text-slate-500 mx-auto"></i>
-                                            <p class="text-sm mt-1 text-slate-500">Video</p>
-                                        </div>
+                                    <div class="aspect-w-16 bg-slate-200 dark:bg-slate-600 rounded overflow-hidden">
+                                        <video controls muted loop playsinline preload="metadata" src="${item.videoUrl}#t=0.1" class="w-full h-full object-cover">
+                                            Your browser does not support the video tag.
+                                        </video>
                                     </div>
+                                    <p class="text-xs text-center text-slate-500 mt-1">Demo Video</p>
                                 </div>
                             ` : ''}
-                            ${item.screenshot ? `
+                            ${item.screenshotUrl ? `
                                 <div class="p-2 bg-slate-100 dark:bg-slate-700/50 rounded-lg">
-                                    <div class="h-32 bg-slate-200 dark:bg-slate-600 rounded flex items-center justify-center">
-                                        <div class="text-center">
-                                            <i data-lucide="image" class="w-8 h-8 text-slate-400 dark:text-slate-500 mx-auto"></i>
-                                            <p class="text-sm mt-1 text-slate-500">Screenshot</p>
-                                        </div>
-                                    </div>
+                                     <img src="${item.screenshotUrl}" alt="Screenshot for ${item.text}" loading="lazy" class="rounded-md w-full h-auto object-cover bg-slate-200 dark:bg-slate-600 aspect-[16/9]">
+                                     <p class="text-xs text-center text-slate-500 mt-1">Example Screenshot</p>
                                 </div>
                             ` : ''}
                         </div>
@@ -512,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                 </label>
                             </div>
-                            ${ (item.video || item.screenshot) ? placeholderHtml : ''}
+                            ${ (item.videoUrl || item.screenshotUrl) ? placeholderHtml : ''}
                         </div>
                     `;
                 }).join('');
