@@ -689,10 +689,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: 'Desktop Apps',
                 icon: 'layout-dashboard',
                  items: [
-                    { text: 'Install Project Management App: Notion', link: 'https://www.notion.so/desktop', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Notion+Desktop+App'},
-                    { text: 'Install Comms Hub: Ferdium', link: 'https://ferdium.org/download', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Ferdium+Interface'},
-                    { text: 'Use Online Writing App: Google Docs', link: 'https://docs.google.com'},
-                    { text: 'Install Graphics App: Canva', link: 'https://www.canva.com/download/'},
+                    { text: 'Install Project Management App: Notion', link: 'https://www.notion.so/desktop', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/4654329fc01e43e686a98e787f10944c3af87dce.png' },
+                    { text: 'Install Comms (Communications) Hub: HelpDesk', link: 'https://helpdesk.icu', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/a92de8cac406f3374716124f03752d88b0295496.png' },
+                    { text: 'Use Online Writing App: Google Docs', link: 'https://docs.google.com' },
+                    { text: 'Install Graphics App: Canva', link: 'https://www.canva.com/download/', screenshotUrl: 'https://bucket.mlcdn.com/a/3336/3336910/images/8480abd17f0fb10510dbf261793f28a9797b97b5.png'},
                     { text: 'Configure Ferdium as Your Comms Hub', subtext: 'Inside Ferdium, add services for Gmail, Google Calendar, WhatsApp, and Slack to centralize notifications.', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-typing-on-a-laptop-in-a-close-up-shot-4493-large.mp4', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Configuring+Ferdium' }
                 ]
             },
@@ -795,7 +795,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 ]
             },
             
-            
+              {
+                id: 'hard-drive',
+                title: 'Hard Drive',
+                icon: 'tablet-smartphone',
+                items: [
+                    { text: 'Make Key Folders Available Offline', subtext: 'In your Google Drive folder on your computer, right-click important folders (like "Projects") and select "Available offline".', screenshotUrl: 'https://placehold.co/600x350/e2e8f0/475569?text=Google+Drive+Offline+Access' },
+                    { text: 'Bookmark Quick File Converters', subtext: 'Keep TinyWow (for PDF/Image conversion) and Remove.bg (for background removal) handy.', link: 'https://tinywow.com' },
+                    { text: 'Establish a Weekly Backup Routine', subtext: 'Every Friday, drag your main "Business" folder from your desktop to an external hard drive.' }
+                ],
+                postambleHTML: `
+                     <div class="p-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h5 class="font-semibold text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i>Backup Tip</h5>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">For a full account backup, use <a href="https://takeout.google.com" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Google Takeout</a> once a month to download an archive of all your Google data.</p>
+                        </div>
+                    </div>`
+            },
                      
        // Add this new section before the final checklist
             {
@@ -833,11 +849,27 @@ document.addEventListener("DOMContentLoaded", function () {
                              </div>
                             <p class="text-slate-600 dark:text-slate-300">Your organized digital workspace is ready. You've built a powerful foundation for productivity.</p>
                         </div>
-                        <div class="mt-6">
-                            <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Completion Summary:</h4>
-                            <ul id="final-summary-list" class="list-disc list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                                <!-- Summary will be populated by JS -->
-                            </ul>
+                         <div class="mt-6">
+                <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Completion Summary:</h4>
+                <ul id="final-summary-list" class="list-disc list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <!-- Summary will be populated by JS -->
+                </ul>
+                
+                <!-- Buttons with URLs -->
+                <div class="mt-6 flex gap-3">
+                    <button 
+                        onclick="window.open('https://elnegocio.digital/testimonios', '_blank')"
+                        class="px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-md transition-colors flex items-center gap-2">
+                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                        Leave Feedback
+                    </button>
+                    <button 
+                        onclick="window.open('https://centro-ayuda.bebelldigitalsolutions.com/', '_blank')" 
+                        class="px-4 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 rounded-md transition-colors flex items-center gap-2">
+                        <i data-lucide="help-circle" class="w-4 h-4"></i>
+                        Need Help?
+                    </button>
+                </div>
                         </div>
                     </div>`
             }
@@ -862,6 +894,9 @@ document.addEventListener("DOMContentLoaded", function () {
             initScrollSpy();
             lucide.createIcons();
         }
+        
+        
+      
         
         function generateToolsDirectory() {
             const toolsMap = new Map();
